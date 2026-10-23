@@ -1,53 +1,114 @@
-# Diabetes Prediction
+Diabetes Prediction 
 
 ## Project Overview
-This project explores diabetes classification using the CDC 2021 Behavioral Risk Factor Surveillance System (BRFSS) survey dataset.
 
-It combines data preparation, exploratory data analysis, logistic regression, model evaluation, and an interactive Streamlit dashboard.
+This project explores the use of machine learning to estimate the likelihood
+of a positive diabetes outcome using selected health and demographic
+indicators from the CDC's 2021 Behavioral Risk Factor Surveillance System
+(BRFSS).
+
+The project includes data preparation, exploratory analysis, a
+scikit-learn Logistic Regression pipeline, model evaluation, and a
+Streamlit dashboard for demonstrating predictions.
 
 ## Objectives
-- Prepare and analyse survey data using Python.
-- Investigate demographic, health, and lifestyle characteristics associated with reported diabetes.
-- Train and evaluate a logistic regression classification model.
-- Develop an interactive dashboard for demonstration.
 
-## Technology Stack
-- Python
-- pandas and NumPy
-- scikit-learn
-- Streamlit
-- Google Colab
-- GitHub
+- Prepare and analyse the BRFSS dataset for a binary classification task.
+- Train a Logistic Regression model using selected predictors.
+- Evaluate classification performance using multiple metrics.
+- Save a reusable preprocessing and prediction pipeline.
+- Build an interactive dashboard using Streamlit.
+- Document the workflow for reproducibility and portfolio development.
+
+## Dataset
+
+**Source:** U.S. Centers for Disease Control and Prevention (CDC),
+Behavioral Risk Factor Surveillance System (BRFSS), 2021.
+
+The analysis uses selected demographic, health, and lifestyle variables.
+Examples include age group, sex, BMI, general health, exercise,
+hypertension-related indicators, cholesterol history, and smoking status.
+
+The raw dataset is not included in this repository. Consult the CDC's
+official BRFSS documentation for the original data, variable definitions,
+survey methodology, and applicable data-use terms.
+
+Official resource:
+https://www.cdc.gov/brfss/annual_data/annual_2021.html
+
+## Methodology
+
+1. **Data preparation:** Select relevant variables, handle missing and
+   invalid responses, and prepare the target and predictor variables.
+2. **Exploratory analysis:** Examine the data and relevant patterns.
+3. **Preprocessing:** Apply categorical encoding and numerical
+   preprocessing through a scikit-learn pipeline.
+4. **Model training:** Fit a Logistic Regression classifier.
+5. **Evaluation:** Assess accuracy, precision, recall, F1-score,
+   ROC-AUC, PR-AUC, and the confusion matrix.
+6. **Dashboard:** Use Streamlit to present model performance and allow
+   users to explore example predictions.
+7. **Persistence:** Save the fitted pipeline for reuse by the app.
 
 ## Model Performance
-The evaluated test-set results at a probability threshold of 0.20 were:
+
+The notebook reported the following results at a classification
+threshold of 0.20:
 
 | Metric | Result |
 |---|---:|
 | Accuracy | 79.44% |
 | Precision | 35.99% |
 | Recall | 65.86% |
-| F1 score | 46.55% |
+| F1-score | 46.55% |
 | ROC-AUC | 82.86% |
+| PR-AUC | 0.4227 |
 
-These metrics describe the model's performance on the evaluated test set. They do not establish clinical effectiveness.
+The reported confusion matrix was:
 
-## Data Source
-CDC Behavioral Risk Factor Surveillance System (BRFSS), 2021:
+| | Predicted negative | Predicted positive |
+|---|---:|---:|
+| Actual negative | 59,774 | 13,495 |
+| Actual positive | 3,934 | 7,589 |
 
-https://www.cdc.gov/brfss/annual_data/annual_2021.html
-
-The raw dataset is not included in this repository.
-
-## Running the Dashboard
-Install the required packages, ensure the trained model is available at `models/diabetes_logistic_pipeline.joblib`, and run:
-
-`streamlit run app.py`
-
-See the project requirements and implementation files for further instructions.
+The 0.20 threshold classifies an observation as positive when its
+predicted probability is at least 0.20. This threshold affects the
+balance between precision and recall. These results describe the
+evaluated dataset and should not be interpreted as evidence of
+clinical effectiveness or performance on every population.
 
 ## Limitations
-- The data are survey-based and may contain missing or self-reported information.
-- Results depend on the selected variables, preprocessing, and classification threshold.
-- The model identifies statistical patterns, not causes.
-- The dashboard is an educational demonstration and is not a medical diagnostic tool.
+
+- The model identifies statistical associations; it does not establish
+  causation.
+- Performance depends on the dataset, target definition, preprocessing,
+  and evaluation procedure.
+- The classification threshold changes the reported predictions.
+- Survey-based indicators may contain reporting and measurement errors.
+- Performance may differ across demographic groups and in other
+  populations.
+- The app is a demonstration and is not validated for clinical use.
+
+## Tools and Technologies
+
+- Python
+- pandas and NumPy
+- scikit-learn
+- joblib
+- Matplotlib and Seaborn
+- Streamlit
+- Google Colab and Jupyter Notebook
+- Git and GitHub
+
+## Responsible Use
+
+Use the project for learning, research, and demonstration. Do not use
+its output to make medical decisions, deny services, or determine an
+individual's health status.
+
+## License and Data Attribution
+
+Check the existing repository's license and the CDC's data-use terms
+before redistributing project components or data. The project does not
+include the raw BRFSS dataset.
+"""
