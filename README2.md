@@ -111,4 +111,3 @@ individual's health status.
 Check the existing repository's license and the CDC's data-use terms
 before redistributing project components or data. The project does not
 include the raw BRFSS dataset.
-"""
